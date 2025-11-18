@@ -20,8 +20,11 @@ class User(db.Model):
     full_name = db.Column(db.String(120), nullable=False)
     role = db.Column(db.String(20), nullable=False) 
     
-    enrollments = db.relationship('Enrollment', backref='student', lazy=True, foreign_keys='Enrollment.student_id')
-    courses_taught = db.relationship('Course', backref='teacher', lazy=True)
+    enrollments = db.relationship('Enrollment', backref='student', lazy=True, foreign_keys='Enrollment.student_id', cascade='all, delete-orphan')
+    courses_taught = db.relationship('Course', backref='teacher', lazy=True,foreign_keys='Course.teacher_id')
+    def __repr__(self):
+        return f'{self.full_name} ({self.role})'
+    
 
 class Course(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -29,8 +32,11 @@ class Course(db.Model):
     time = db.Column(db.String(100), nullable=False)
     capacity = db.Column(db.Integer, nullable=False)
     teacher_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    
     enrollments = db.relationship('Enrollment', backref='course', lazy=True, cascade='all, delete-orphan')
+
+    def __repr__(self):
+        return f'{self.name} - {self.time}'
+    
 
 class Enrollment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -38,6 +44,9 @@ class Enrollment(db.Model):
     course_id = db.Column(db.Integer, db.ForeignKey('course.id'), nullable=False)
     grade = db.Column(db.Float, nullable=True)
     enrolled_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f'{self.student.full_name} in {self.course.name}'
 
 from flask_admin import AdminIndexView, expose
 
@@ -66,29 +75,28 @@ class SecureModelView(ModelView):
         return redirect(url_for('login'))
 
 class EnrollmentAdminView(SecureModelView):
-    # Show basic columns in list view
-    column_list = ['id', 'student_id', 'course_id', 'grade', 'enrolled_at']
+    column_list = [ 'student.full_name', 'course.name', 'grade', 'enrolled_at']
     column_labels = {
-        'id': 'ID',
-        'student_id': 'Student ID',
-        'course_id': 'Course ID',
+        'student.full_name': 'Student Name',
+        'course.name': 'Course Name',
         'grade': 'Grade',
         'enrolled_at': 'Enrolled At'
     }
     column_default_sort = ('enrolled_at', True)
+    form_columns = ['student_id', 'course_id', 'grade', 'enrolled_at']
 
 class CourseAdminView(SecureModelView):
-    # Show columns in list view
-    column_list = ['name', 'time', 'capacity', 'teacher_id']
+    column_list = ['name', 'time', 'capacity', 'teacher.full_name']
     column_labels = {
         'name': 'Course Name',
         'time': 'Time',
         'capacity': 'Capacity',
-        'teacher_id': 'Teacher ID'
+        'teacher.full_name': 'Teacher Name'
     }
     column_searchable_list = ['name']
-    # Explicitly include teacher_id in the create/edit form
     form_columns = ['name', 'time', 'capacity', 'teacher_id']
+
+    
 
 admin.add_view(SecureModelView(User, db.session))
 admin.add_view(CourseAdminView(Course, db.session))
@@ -114,8 +122,6 @@ def login():
         
         user = User.query.filter_by(username=username).first()
         
-        # DEVELOPMENT ONLY: Using plain text password comparison
-        # WARNING: Never use this in production!
         if user and user.password == password:
             session['user_id'] = user.id
             session['username'] = user.username
@@ -281,11 +287,9 @@ def init_db():
         db.create_all()
         
         if User.query.count() > 0:
-            print("Database already initialized.")
+            #print("Database already initialized.")
             return
         
-        # DEVELOPMENT ONLY: Storing plain text passwords
-        # WARNING: Never use this in production!
         students = [
             User(username='jsantos', password='password', full_name='Jose Santos', role='student'),
             User(username='bbrown', password='password', full_name='Betty Brown', role='student'),
@@ -376,7 +380,7 @@ def init_db():
             db.session.add(enrollment)
         
         db.session.commit()
-        print("Database initialized with sample data!")
+        #print("Database initialized with sample data!")
 
 if __name__ == '__main__':
     init_db()

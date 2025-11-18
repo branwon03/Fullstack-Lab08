@@ -3,14 +3,12 @@
 {% block head_css %}
 {{ super() }}
 <style>
-    /* UC Merced Theme Colors */
     :root {
         --ucm-blue: #002856;
         --ucm-gold: #FFB71B;
         --ucm-light-blue: #1E4D7B;
     }
-    
-    /* Navigation Bar Styling */
+
     .navbar {
         background: linear-gradient(135deg, var(--ucm-blue) 0%, var(--ucm-light-blue) 100%) !important;
         border-bottom: 3px solid var(--ucm-gold);
@@ -35,23 +33,19 @@
         background-color: rgba(255, 183, 27, 0.1);
     }
     
-    /* Hide the Home menu item */
     .navbar-nav li:first-child {
         display: none !important;
     }
     
-    /* Style for Sign Out button in navbar */
     .navbar .btn-danger {
         margin: 8px 15px;
         float: right;
     }
     
-    /* Body Background */
     body {
         background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
     }
     
-    /* Content Area */
     .container {
         background: white;
         padding: 2rem;
@@ -60,7 +54,6 @@
         margin-top: 2rem;
     }
     
-    /* Welcome Message - Centered on Home Page */
     .admin-welcome {
         text-align: center;
         padding: 3rem 2rem;
@@ -83,7 +76,6 @@
         margin: 0;
     }
     
-    /* Buttons */
     .btn-primary {
         background-color: var(--ucm-blue);
         border-color: var(--ucm-blue);
@@ -94,7 +86,6 @@
         border-color: var(--ucm-light-blue);
     }
     
-    /* Sign Out Button */
     .btn-danger {
         background-color: #dc3545;
         border-color: #dc3545;
@@ -106,7 +97,6 @@
         border-color: #bd2130;
     }
     
-    /* Tables */
     .table thead th {
         background-color: var(--ucm-blue) !important;
         color: white !important;
@@ -114,7 +104,6 @@
         font-weight: 600;
     }
     
-    /* Make sure all table header text is white */
     .table thead th a {
         color: white !important;
     }
@@ -123,14 +112,12 @@
         color: var(--ucm-gold) !important;
     }
     
-    /* Force all text in table headers to be white */
     .table thead th,
     .table thead th span,
     .table thead th div {
         color: white !important;
     }
     
-    /* Override any default Flask-Admin styles */
     table.table thead th {
         color: white !important;
     }
@@ -143,7 +130,6 @@
         background-color: rgba(0, 40, 86, 0.05);
     }
     
-    /* Links */
     a {
         color: var(--ucm-blue);
     }
@@ -152,12 +138,10 @@
         color: var(--ucm-light-blue);
     }
     
-    /* Page Headers */
     h1, h2, h3 {
         color: var(--ucm-blue);
     }
     
-    /* Remove old access control display */
     .navbar-text {
         display: none;
     }
