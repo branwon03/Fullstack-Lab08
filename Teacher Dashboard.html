@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo">ACME U</h1>
+            <nav>
+                <span id="welcome-user">Welcome, Teacher...</span>
+                <button id="logout-btn" class="btn btn-secondary">Sign Out</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="dashboard-content">
+
+            <section class="card">
+                <h2>My Courses</h2>
+                <table id="teacher-courses-table">
+                    <thead>
+                        <tr>
+                            <th>Course Name</th>
+                            <th>Time</th>
+                            <th>Enrolled</th>
+                            <th>View Roster</th>
+                        </tr>
+                    </thead>
+                    <tbody id="teacher-courses-body">
+                        <!-- Rows added here by JavaScript -->
+                    </tbody>
+                </table>
+                <p id="teacher-courses-loading">Loading your courses...</p>
+            </section>
+        </div>
+    </div>
+
+
+    <script src="teacher.js"></script>
+</body>
+</html>

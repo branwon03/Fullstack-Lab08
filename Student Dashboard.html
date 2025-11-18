@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo">ACME U</h1>
+            <nav>
+                <span id="welcome-user">Welcome, Student...</span>
+                <button id="logout-btn" class="btn btn-secondary">Sign Out</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="dashboard-content">
+            <section class="card">
+                <h2>My Enrolled Courses</h2>
+                <table id="my-courses-table">
+                    <thead>
+                        <tr>
+                            <th>Course Name</th>
+                            <th>Teacher</th>
+                            <th>Time</th>
+                            <th>Enrolled</th>
+                        </tr>
+                    </thead>
+                    <tbody id="my-courses-body">
+                        <!-- Rows added here by javascript-->
+                        
+                    </tbody>
+                </table>
+                <p id="my-courses-loading">Loading your courses...</p>
+            </section>
+
+            <section class="card">
+                <h2>Register for Courses</h2>
+                <table id="all-courses-table">
+                    <thead>
+                        <tr>
+                            <th>Course Name</th>
+                            <th>Teacher</th>
+                            <th>Time</th>
+                            <th>Enrolled</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="all-courses-body">
+                        <!-- Rows added here by JavaScript -->
+                    
+                    </tbody>
+                </table>
+                <p id="all-courses-loading">Loading all courses...</p>
+                <p id="register-message" class="success-message"></p>
+            </section>
+        </div>
+    </div>
+
+    <script src="student.js"></script>
+</body>
+</html>

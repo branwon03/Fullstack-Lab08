@@ -1,0 +1,258 @@
+/* A simple, 'college-student' stylesheet */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* End of Reset */
+
+
+/* --- Global Styles --- */
+:root {
+    --primary-color: #005A9C; /* A standard 'university blue' */
+    --secondary-color: #E87722; /* An accent orange */
+    --light-gray: #f4f4f4;
+    --medium-gray: #ddd;
+    --dark-gray: #333;
+    --error-red: #D90429;
+    --success-green: #008000;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--light-gray);
+    color: var(--dark-gray);
+    line-height: 1.5;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+    margin-bottom: 0.5em;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; color: var(--primary-color); }
+p { margin-bottom: 1em; }
+a { color: var(--primary-color); }
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* --- Card Component --- */
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+/* --- Button Styles --- */
+.btn {
+    display: inline-block;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn:hover {
+    background-color: #004a80;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn.btn-secondary {
+    background-color: var(--medium-gray);
+    color: var(--dark-gray);
+}
+.btn.btn-secondary:hover {
+    background-color: #c4c4c4;
+}
+
+.btn.btn-small {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+}
+
+.btn:disabled {
+    background-color: var(--medium-gray);
+    cursor: not-allowed;
+}
+
+
+/* --- Form Styles --- */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--medium-gray);
+    border-radius: 6px;
+    box-sizing: border-box; /* Important for 100% width */
+}
+
+/* --- Table Styles --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table th,
+table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--medium-gray);
+}
+
+table th {
+    background-color: #f9f9f9;
+    font-weight: 700;
+    color: #555;
+}
+
+table tr:hover {
+    background-color: #fcfcfc;
+}
+
+/* --- Navbar / Header --- */
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 15px 0;
+    margin-bottom: 20px;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0; /* Remove default container padding */
+    width: 90%;
+}
+
+.navbar .logo {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.navbar nav {
+    display: flex;
+    align-items: center;
+}
+
+.navbar nav span {
+    margin-right: 20px;
+    font-weight: 500;
+}
+
+/* --- Login Page --- */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+.login-container .card {
+    width: 100%;
+    max-width: 400px;
+}
+.login-container h2 {
+    text-align: center;
+}
+.login-container p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.login-container .btn {
+    width: 100%;
+}
+
+/* --- Dashboard --- */
+.dashboard-content {
+    display: grid;
+    gap: 20px;
+}
+
+/* --- Utility Classes --- */
+.error-message {
+    color: var(--error-red);
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+.success-message {
+    color: var(--success-green);
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+.hidden {
+    display: none;
+}

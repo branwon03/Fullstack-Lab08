@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Roster</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo">ACME U</h1>
+            <nav>
+                <a href="teacher_dashboard.html" class="btn btn-secondary">Back to Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="dashboard-content">
+            <section class="card">
+                <h2 id="class-title">Class Roster: ...</h2>
+                <p id="grade-message" class="success-message"></p>
+                <table id="roster-table">
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Grade</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="roster-body">
+                        <!-- Rows added here by JavaScript -->
+
+                    </tbody>
+                </table>
+                <p id="roster-loading">Loading class roster...</p>
+            </section>
+        </div>
+    </div>
+
+    <script src="class_view.js"></script>
+</body>
+</html>
