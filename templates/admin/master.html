@@ -1,0 +1,8 @@
+{% extends 'admin/base.html' %}
+
+{% block access_control %}
+<div class="navbar-text">
+    <span style="margin-right: 15px;">Welcome {{ session.full_name }}!</span>
+    <a href="{{ url_for('logout') }}" class="btn btn-danger btn-sm">Sign Out</a>
+</div>
+{% endblock %}
