@@ -1,8 +1,180 @@
 {% extends 'admin/base.html' %}
 
-{% block access_control %}
-<div class="navbar-text">
-    <span style="margin-right: 15px;">Welcome {{ session.full_name }}!</span>
-    <a href="{{ url_for('logout') }}" class="btn btn-danger btn-sm">Sign Out</a>
+{% block head_css %}
+{{ super() }}
+<style>
+    /* UC Merced Theme Colors */
+    :root {
+        --ucm-blue: #002856;
+        --ucm-gold: #FFB71B;
+        --ucm-light-blue: #1E4D7B;
+    }
+    
+    /* Navigation Bar Styling */
+    .navbar {
+        background: linear-gradient(135deg, var(--ucm-blue) 0%, var(--ucm-light-blue) 100%) !important;
+        border-bottom: 3px solid var(--ucm-gold);
+    }
+    
+    .navbar-brand {
+        color: var(--ucm-gold) !important;
+        font-weight: bold;
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .navbar-nav .nav-link {
+        color: white !important;
+        font-weight: 500;
+        transition: all 0.3s;
+    }
+    
+    .navbar-nav .nav-link:hover {
+        color: var(--ucm-gold) !important;
+        background-color: rgba(255, 183, 27, 0.1);
+    }
+    
+    /* Hide the Home menu item */
+    .navbar-nav li:first-child {
+        display: none !important;
+    }
+    
+    /* Style for Sign Out button in navbar */
+    .navbar .btn-danger {
+        margin: 8px 15px;
+        float: right;
+    }
+    
+    /* Body Background */
+    body {
+        background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    }
+    
+    /* Content Area */
+    .container {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        margin-top: 2rem;
+    }
+    
+    /* Welcome Message - Centered on Home Page */
+    .admin-welcome {
+        text-align: center;
+        padding: 3rem 2rem;
+        background: linear-gradient(135deg, var(--ucm-blue) 0%, var(--ucm-light-blue) 100%);
+        color: white;
+        border-radius: 10px;
+        margin: 2rem 0;
+        box-shadow: 0 4px 20px rgba(0,40,86,0.3);
+    }
+    
+    .admin-welcome h1 {
+        color: var(--ucm-gold);
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+    
+    .admin-welcome p {
+        font-size: 1.2rem;
+        margin: 0;
+    }
+    
+    /* Buttons */
+    .btn-primary {
+        background-color: var(--ucm-blue);
+        border-color: var(--ucm-blue);
+    }
+    
+    .btn-primary:hover {
+        background-color: var(--ucm-light-blue);
+        border-color: var(--ucm-light-blue);
+    }
+    
+    /* Sign Out Button */
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+        font-weight: 600;
+    }
+    
+    .btn-danger:hover {
+        background-color: #c82333;
+        border-color: #bd2130;
+    }
+    
+    /* Tables */
+    .table thead th {
+        background-color: var(--ucm-blue) !important;
+        color: white !important;
+        border: none;
+        font-weight: 600;
+    }
+    
+    /* Make sure all table header text is white */
+    .table thead th a {
+        color: white !important;
+    }
+    
+    .table thead th a:hover {
+        color: var(--ucm-gold) !important;
+    }
+    
+    /* Force all text in table headers to be white */
+    .table thead th,
+    .table thead th span,
+    .table thead th div {
+        color: white !important;
+    }
+    
+    /* Override any default Flask-Admin styles */
+    table.table thead th {
+        color: white !important;
+    }
+    
+    table.table thead th * {
+        color: white !important;
+    }
+    
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: rgba(0, 40, 86, 0.05);
+    }
+    
+    /* Links */
+    a {
+        color: var(--ucm-blue);
+    }
+    
+    a:hover {
+        color: var(--ucm-light-blue);
+    }
+    
+    /* Page Headers */
+    h1, h2, h3 {
+        color: var(--ucm-blue);
+    }
+    
+    /* Remove old access control display */
+    .navbar-text {
+        display: none;
+    }
+</style>
+{% endblock %}
+
+{% block page_body %}
+<div class="admin-welcome">
+    <h1>Welcome {{ session.full_name }}!</h1>
+    <p>UC Merced Dashboard Administration</p>
 </div>
+{{ super() }}
+{% endblock %}
+
+{% block menu_links %}
+{{ super() }}
+<li class="navbar-right">
+    <a href="{{ url_for('logout') }}" class="btn btn-danger btn-sm" style="margin-top: 8px;">Sign Out</a>
+</li>
 {% endblock %}
