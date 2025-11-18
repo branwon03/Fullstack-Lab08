@@ -114,7 +114,9 @@ def login():
         
         user = User.query.filter_by(username=username).first()
         
-        if user and check_password_hash(user.password, password):
+        # DEVELOPMENT ONLY: Using plain text password comparison
+        # WARNING: Never use this in production!
+        if user and user.password == password:
             session['user_id'] = user.id
             session['username'] = user.username
             session['full_name'] = user.full_name
@@ -282,34 +284,36 @@ def init_db():
             print("Database already initialized.")
             return
         
+        # DEVELOPMENT ONLY: Storing plain text passwords
+        # WARNING: Never use this in production!
         students = [
-            User(username='jsantos', password=generate_password_hash('password'), full_name='Jose Santos', role='student'),
-            User(username='bbrown', password=generate_password_hash('password'), full_name='Betty Brown', role='student'),
-            User(username='jstuart', password=generate_password_hash('password'), full_name='John Stuart', role='student'),
-            User(username='lcheng', password=generate_password_hash('password'), full_name='Li Cheng', role='student'),
-            User(username='nlittle', password=generate_password_hash('password'), full_name='Nancy Little', role='student'),
-            User(username='mnorris', password=generate_password_hash('password'), full_name='Mindy Norris', role='student'),
-            User(username='aranganath', password=generate_password_hash('password'), full_name='Aditya Ranganath', role='student'),
-            User(username='ychen', password=generate_password_hash('password'), full_name='Yi Wen Chen', role='student'),
-            User(username='cnorris', password=generate_password_hash('password'), full_name='Chuck Norris', role='student'),
-            User(username='kmalik', password=generate_password_hash('password'), full_name='Kabir Malik', role='student'),
-            User(username='aghosh', password=generate_password_hash('password'), full_name='Aditya Ghosh', role='student'),
-            User(username='bwong', password=generate_password_hash('password'), full_name='Brandon Wong', role='student'),
+            User(username='jsantos', password='password', full_name='Jose Santos', role='student'),
+            User(username='bbrown', password='password', full_name='Betty Brown', role='student'),
+            User(username='jstuart', password='password', full_name='John Stuart', role='student'),
+            User(username='lcheng', password='password', full_name='Li Cheng', role='student'),
+            User(username='nlittle', password='password', full_name='Nancy Little', role='student'),
+            User(username='mnorris', password='password', full_name='Mindy Norris', role='student'),
+            User(username='aranganath', password='password', full_name='Aditya Ranganath', role='student'),
+            User(username='ychen', password='password', full_name='Yi Wen Chen', role='student'),
+            User(username='cnorris', password='password', full_name='Chuck Norris', role='student'),
+            User(username='kmalik', password='password', full_name='Kabir Malik', role='student'),
+            User(username='aghosh', password='password', full_name='Aditya Ghosh', role='student'),
+            User(username='bwong', password='password', full_name='Brandon Wong', role='student'),
 
         ]
         
         teachers = [
-            User(username='rjenkins', password=generate_password_hash('password'), full_name='Ralph Jenkins', role='teacher'),
-            User(username='swalker', password=generate_password_hash('password'), full_name='Susan Walker', role='teacher'),
-            User(username='ahepworth', password=generate_password_hash('password'), full_name='Ammon Hepworth', role='teacher'),
-            User(username='scarpin', password=generate_password_hash('password'), full_name='Stefano Carpin', role='teacher'),
-            User(username='acerpa', password=generate_password_hash('password'), full_name='Alberto Cerpa', role='teacher'),
+            User(username='rjenkins', password='password', full_name='Ralph Jenkins', role='teacher'),
+            User(username='swalker', password='password', full_name='Susan Walker', role='teacher'),
+            User(username='ahepworth', password='password', full_name='Ammon Hepworth', role='teacher'),
+            User(username='scarpin', password='password', full_name='Stefano Carpin', role='teacher'),
+            User(username='acerpa', password='password', full_name='Alberto Cerpa', role='teacher'),
 
         ]
         
         admin = [
-            User(username='jsmuñoz',password=generate_password_hash('password'),full_name='Juan Sánchez Muñoz', role='admin'),
-            User(username='admin',password=generate_password_hash('password'),full_name='Administrator', role='admin'),
+            User(username='jsmuñoz',password='password',full_name='Juan Sánchez Muñoz', role='admin'),
+            User(username='admin',password='password',full_name='Administrator', role='admin'),
         ]
 
         for user in students + teachers + admin:
