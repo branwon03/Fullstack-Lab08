@@ -166,11 +166,13 @@ def add_courses():
     for course in all_courses:
         if course.id not in enrolled_course_ids:
             enrolled_count = Enrollment.query.filter_by(course_id=course.id).count()
+            teacher = User.query.get(course.teacher_id)
             available_courses.append({
                 'course': course,
                 'enrolled_count': enrolled_count,
                 'spots_left': course.capacity - enrolled_count,
-                'is_full': enrolled_count >= course.capacity
+                'is_full': enrolled_count >= course.capacity,
+                'teacher_name': teacher.full_name if teacher else 'Unknown'
             })
     
     return render_template('add_courses.html', courses=available_courses)

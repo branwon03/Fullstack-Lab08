@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Add Courses - UC Merced% endblock %}
+{% block title %}Add Courses - ACME University{% endblock %}
 
 {% block content %}
 <div class="row">
@@ -26,7 +26,7 @@
                     {% for item in courses %}
                     <tr>
                         <td><strong>{{ item.course.name }}</strong></td>
-                        <td>{{ item.course.teacher.full_name }}</td>
+                        <td>{{ item.teacher_name if item.teacher_name else 'Teacher ID: ' + item.course.teacher_id|string }}</td>
                         <td>{{ item.course.time }}</td>
                         <td>
                             <span class="badge {% if item.is_full %}bg-danger{% elif item.spots_left <= 2 %}bg-warning{% else %}bg-success{% endif %}">

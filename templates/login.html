@@ -1,34 +1,125 @@
 {% extends "base.html" %}
 
-{% block title %}Login - UC Merced{% endblock %}
+{% block title %}Login - UC Merced Dashboard{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center mt-5">
-    <div class="col-md-4">
-        <div class="card shadow">
-            <div class="card-body">
-                <h2 class="card-title text-center mb-4">UC Merced</h2>
-                <form method="POST">
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" required autofocus>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Sign in</button>
-                </form>
-                <div class="mt-4">
-                    <small class="text-muted">
-                        <strong>Demo Credentials:</strong><br>
-                        Student: cnorris / password<br>
-                        Student: mnorris / password<br>
-                        Teacher: ahepworth / password<br>
-                        Admin: admin / admin123
-                    </small>
-                </div>
+<style>
+    body {
+        background: linear-gradient(135deg, #002856 0%, #1E4D7B 100%);
+    }
+    
+    .login-card {
+        max-width: 450px;
+        margin: 5rem auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        overflow: hidden;
+    }
+    
+    .login-header {
+        background: linear-gradient(135deg, #002856 0%, #1E4D7B 100%);
+        padding: 2rem;
+        text-align: center;
+    }
+    
+    .login-header h2 {
+        color: #FFB71B;
+        margin: 0;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    
+    .login-header p {
+        color: white;
+        margin: 0.5rem 0 0 0;
+        font-size: 0.9rem;
+    }
+    
+    .login-body {
+        padding: 2.5rem;
+    }
+    
+    .form-label {
+        color: #002856;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+    
+    .form-control {
+        border: 2px solid #e0e0e0;
+        padding: 0.75rem;
+        border-radius: 8px;
+        transition: all 0.3s;
+    }
+    
+    .form-control:focus {
+        border-color: #FFB71B;
+        box-shadow: 0 0 0 0.2rem rgba(255, 183, 27, 0.25);
+    }
+    
+    .btn-login {
+        background: linear-gradient(135deg, #002856 0%, #1E4D7B 100%);
+        border: none;
+        color: white;
+        padding: 0.75rem;
+        font-weight: bold;
+        border-radius: 8px;
+        width: 100%;
+        transition: all 0.3s;
+    }
+    
+    .btn-login:hover {
+        background: linear-gradient(135deg, #FFB71B 0%, #E6A617 100%);
+        color: #002856;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 183, 27, 0.4);
+    }
+    
+    .demo-credentials {
+        background: #f8f9fa;
+        border-left: 4px solid #FFB71B;
+        padding: 1rem;
+        margin-top: 1.5rem;
+        border-radius: 5px;
+    }
+    
+    .demo-credentials strong {
+        color: #002856;
+    }
+    
+    .demo-credentials small {
+        color: #666;
+        line-height: 1.6;
+    }
+</style>
+
+<div class="login-card">
+    <div class="login-header">
+        <h2><span style="color: #FFB71B;">UC</span><span style="color: white;">MERCED</span></h2>
+        <p>Single Sign On</p>
+    </div>
+    <div class="login-body">
+        <form method="POST">
+            <div class="mb-3">
+                <label for="username" class="form-label">UCMNetID or M.ID</label>
+                <input type="text" class="form-control" id="username" name="username" required autofocus>
             </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-login">Sign In</button>
+        </form>
+        <div class="demo-credentials">
+            <strong>Demo Credentials:</strong><br>
+            <small>
+                <strong>Student:</strong> cnorris / password<br>
+                <strong>Student:</strong> mnorris / password<br>
+                <strong>Teacher:</strong> ahepworth / password<br>
+                <strong>Admin:</strong> admin / password
+            </small>
         </div>
     </div>
 </div>

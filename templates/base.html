@@ -3,17 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}UC Merced{% endblock %}</title>
+    <title>{% block title %}UC Merced Dashboard{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        :root {
+            --ucm-blue: #002856;
+            --ucm-gold: #FFB71B;
+            --ucm-light-blue: #1E4D7B;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #002856 0%, #1E4D7B 100%);
+            min-height: 100vh;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        .navbar {
+            background: var(--ucm-blue) !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            padding: 1rem 0;
+        }
+        
+        .navbar-brand {
+            color: var(--ucm-gold) !important;
+            font-weight: bold;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .navbar-text {
+            color: white !important;
+        }
+        
+        .btn-outline-light:hover {
+            background-color: var(--ucm-gold);
+            border-color: var(--ucm-gold);
+            color: var(--ucm-blue);
+        }
+        
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--ucm-blue);
+            border-color: var(--ucm-blue);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--ucm-light-blue);
+            border-color: var(--ucm-light-blue);
+        }
+        
+        .btn-success {
+            background-color: var(--ucm-gold);
+            border-color: var(--ucm-gold);
+            color: var(--ucm-blue);
+            font-weight: bold;
+        }
+        
+        .btn-success:hover {
+            background-color: #E6A617;
+            border-color: #E6A617;
+            color: var(--ucm-blue);
+        }
+        
+        .card {
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+        
+        .card:hover {
+            border-color: var(--ucm-gold);
+            box-shadow: 0 6px 20px rgba(255, 183, 27, 0.3);
+        }
+        
+        .card-title {
+            color: var(--ucm-blue);
+            font-weight: bold;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--ucm-blue);
+        }
+        
+        .table-dark {
+            background-color: var(--ucm-blue);
+        }
+        
+        .badge.bg-primary {
+            background-color: var(--ucm-blue) !important;
+        }
+        
+        .badge.bg-success {
+            background-color: var(--ucm-gold) !important;
+            color: var(--ucm-blue) !important;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            border-color: var(--ucm-gold);
+            color: #155724;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-primary">
+    <nav class="navbar navbar-dark">
         <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">UC Merced</span>
+            <span class="navbar-brand mb-0 h1">
+                <span style="color: var(--ucm-gold);">UC</span>MERCED Dashboard
+            </span>
             {% if session.user_id %}
             <div class="d-flex align-items-center">
-                <span class="text-white me-3">Welcome {{ session.full_name }}!</span>
+                <span class="navbar-text me-3">Welcome {{ session.full_name }}!</span>
                 <a href="{{ url_for('logout') }}" class="btn btn-outline-light btn-sm">Sign out</a>
             </div>
             {% endif %}
