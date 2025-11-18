@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Add Courses - ACME University{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Add Courses</h2>
+            <a href="{{ url_for('student_dashboard') }}" class="btn btn-secondary">Back to Your Courses</a>
+        </div>
+
+        {% if courses %}
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Teacher</th>
+                        <th>Time</th>
+                        <th>Enrollment</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in courses %}
+                    <tr>
+                        <td><strong>{{ item.course.name }}</strong></td>
+                        <td>{{ item.course.teacher.full_name }}</td>
+                        <td>{{ item.course.time }}</td>
+                        <td>
+                            <span class="badge {% if item.is_full %}bg-danger{% elif item.spots_left <= 2 %}bg-warning{% else %}bg-success{% endif %}">
+                                {{ item.enrolled_count }} / {{ item.course.capacity }}
+                            </span>
+                            {% if item.spots_left > 0 %}
+                            <small class="text-muted">({{ item.spots_left }} spots left)</small>
+                            {% else %}
+                            <small class="text-danger">(Full)</small>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if item.is_full %}
+                            <button class="btn btn-secondary btn-sm" disabled>Full</button>
+                            {% else %}
+                            <form method="POST" action="{{ url_for('enroll_course', course_id=item.course.id) }}" style="display: inline;">
+                                <button type="submit" class="btn btn-primary btn-sm">Enroll</button>
+                            </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-info">
+            You are already enrolled in all available courses!
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

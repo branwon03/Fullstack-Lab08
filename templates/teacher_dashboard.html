@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Teacher Dashboard - ACME University{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="mb-4">Your Courses</h2>
+
+        {% if courses %}
+        <div class="row">
+            {% for course in courses %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ course.name }}</h5>
+                        <p class="card-text">
+                            <strong>Time:</strong> {{ course.time }}<br>
+                            <strong>Capacity:</strong> {{ course.enrollments|length }} / {{ course.capacity }}<br>
+                            <strong>Students Enrolled:</strong> {{ course.enrollments|length }}
+                        </p>
+                        <a href="{{ url_for('view_course', course_id=course.id) }}" class="btn btn-primary">
+                            View Students & Grades
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="alert alert-info">
+            You are not teaching any courses this semester.
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

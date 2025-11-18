@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Student Dashboard - ACME University{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Your Courses</h2>
+            <a href="{{ url_for('add_courses') }}" class="btn btn-success">Add Courses</a>
+        </div>
+
+        {% if enrollments %}
+        <div class="row">
+            {% for enrollment in enrollments %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ enrollment.course.name }}</h5>
+                        <p class="card-text">
+                            <strong>Teacher:</strong> {{ enrollment.course.teacher.full_name }}<br>
+                            <strong>Time:</strong> {{ enrollment.course.time }}<br>
+                            {% if enrollment.grade %}
+                            <strong>Grade:</strong> <span class="badge bg-primary">{{ enrollment.grade }}%</span>
+                            {% else %}
+                            <strong>Grade:</strong> <span class="badge bg-secondary">Not graded</span>
+                            {% endif %}
+                        </p>
+                        <form method="POST" action="{{ url_for('drop_course', enrollment_id=enrollment.id) }}" onsubmit="return confirm('Are you sure you want to drop this course?');">
+                            <button type="submit" class="btn btn-danger btn-sm">Drop Course</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="alert alert-info">
+            You are not enrolled in any courses yet. Click "Add Courses" to get started!
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
